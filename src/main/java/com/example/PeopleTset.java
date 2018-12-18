@@ -17,16 +17,16 @@ public class PeopleTset {
     List<People> list = getPersonList();
     list.forEach(person -> System.out.println(person.toString()));
     System.out.println("------------------------------------------");
+
     list.stream().filter(e -> e.getAge() > 20)
             .forEach(e -> System.out.println(e.toString()));
     System.out.println("------------------------------------------");
+
     Consumer<People> changeAge = e -> e.setAge(e.getAge() + 3);
     list.forEach(changeAge);
     list.forEach(person -> System.out.println(person.toString()));
     System.out.println("------------------------------------------");
-//    list.stream().filter(e -> e.getAge() > 20)
-//            .forEach(e -> System.out.println(e.toString()));
-//    System.out.println("------------------------------------------");
+
     Predicate<People> ageFilter = e -> e.getAge() > 20;
     Predicate<People> sexFilter = e -> e.getSex().equals("male");
     //多条件过滤
@@ -34,17 +34,21 @@ public class PeopleTset {
             .filter(sexFilter)
             .forEach(e -> System.out.println(e.toString()));
     System.out.println("------------------------------------------");
+
     // Predicate : and or
     list.stream().filter(ageFilter.and(sexFilter))
             .forEach(e -> System.out.println(e.toString()));
     System.out.println("------------------------------------------");
+
     //年龄排序
     list.stream().sorted((p1,p2) -> (p1.getAge() - p2.getAge()))
             .forEach(e -> System.out.println(e.toString()));
-    //姓名排序
     System.out.println("------------------------------------------");
+
+    //姓名排序
     list.stream().sorted(Comparator.comparing(People::getName))
             .forEach(e -> System.out.println(e.toString()));
+    System.out.println("------------------------------------------");
 
     long num = list.parallelStream().filter(x -> x.getAge() < 22).count();
     System.out.println(num);
