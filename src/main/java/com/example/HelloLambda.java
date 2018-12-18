@@ -12,19 +12,19 @@ public class HelloLambda {
     for (String str : strs) {
       System.out.println(str);
     }
-
+    System.out.println("---------------------------1------------------");
     Comparator<String> c1  = (String s1, String s2) -> Integer.compare(s1.length(), s2.length());
     Comparator<String> c2  = (String s1, String s2) -> s1.compareTo(s2);
     Comparator<String> c3  = (s1, s2) -> s2.compareTo(s1);
     Comparator<String> c4 = String::compareTo;
 
-    Arrays.sort(strs, (s1, s2) -> s2.compareTo(s1));
-    Arrays.sort(strs, String::compareToIgnoreCase);
-//    Arrays.sort(strs, c3);
+    //Arrays.sort(strs, (s1, s2) -> s2.compareTo(s1));
+    //Arrays.sort(strs, String::compareToIgnoreCase);
+    Arrays.sort(strs, c4);
     for (String str : strs) {
       System.out.println(str);
     }
-
+    System.out.println("---------------------------2---------------------");
     List<Integer> lst = Arrays.asList(new Integer[]{3,6,4});
     lst.forEach(System.out::println);
     System.out.println(transform("Daniel", String::toLowerCase));
